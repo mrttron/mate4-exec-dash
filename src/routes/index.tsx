@@ -102,18 +102,31 @@ function Dashboard() {
           {/* Saldo IBS/CBS — carro-chefe */}
           <article className="rounded-xl border-2 border-bronze bg-card p-6 shadow-[var(--shadow-premium)]">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-bronze">Saldo IBS/CBS</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-bronze">
+                Saldo IBS/CBS
+              </p>
               <Coins className="h-4 w-4 text-bronze" />
             </div>
-            <p className="metric-value mt-5 text-bronze">R$ 3.869,00</p>
-            <div className="mt-4 space-y-1.5 border-t border-bronze/30 pt-3">
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-muted-foreground">Créditos Gerados</span>
-                <span className="font-semibold">R$ 5.200</span>
+
+            <div className="mt-6 space-y-4">
+              {/* Linha 1 — Obrigação */}
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Débitos ( sobre Vendas )</span>
+                <span className="whitespace-nowrap font-semibold text-foreground">R$ 5.200</span>
               </div>
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-muted-foreground">Débitos Incidentes</span>
-                <span className="font-semibold">R$ 1.331</span>
+
+              {/* Linha 2 — Economia/Ativo */}
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Créditos ( sobre Compras )</span>
+                <span className="whitespace-nowrap font-bold text-bronze">R$ 7.500</span>
+              </div>
+            </div>
+
+            {/* Linha 3 — Resultado */}
+            <div className="mt-5 border-t border-border pt-5">
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-sm text-muted-foreground">Saldo Credor a Compensar</span>
+                <span className="metric-value whitespace-nowrap text-primary">R$ 2.300</span>
               </div>
             </div>
           </article>
