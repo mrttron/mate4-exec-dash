@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { TrendingUp, TrendingDown, Wallet, Receipt } from "lucide-react";
+import { TrendingUp, TrendingDown, Wallet, Receipt, Coins } from "lucide-react";
 import { Sidebar } from "@/components/mate4/sidebar";
 
 export const Route = createFileRoute("/")({
@@ -18,13 +18,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Visão executiva de receitas, despesas, lucro líquido e créditos IBS/CBS no dashboard MATE4.",
+          "Visão executiva de receitas, despesas, lucro líquido e saldo IBS/CBS no dashboard MATE4.",
       },
       { property: "og:title", content: "MATE4 · Dashboard Financeiro" },
       {
         property: "og:description",
         content:
-          "Controle financeiro e contábil premium: fluxo de caixa, notas fiscais e compliance.",
+          "Controle financeiro e contábil premium: fluxo de caixa, notas fiscais e economia tributária IBS/CBS.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -32,30 +32,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Dashboard,
 });
-
-const cards = [
-  {
-    label: "Receita Bruta",
-    value: "R$ 4.812.300",
-    delta: "+8,4% vs. mês anterior",
-    up: true,
-    icon: Wallet,
-  },
-  {
-    label: "Despesas Operacionais",
-    value: "R$ 2.938.150",
-    delta: "-2,1% vs. mês anterior",
-    up: false,
-    icon: Receipt,
-  },
-  {
-    label: "Créditos IBS/CBS",
-    value: "R$ 386.940",
-    delta: "+12,7% apurados",
-    up: true,
-    icon: TrendingUp,
-  },
-];
 
 const data = [
   { m: "Jan", v: 1.72 },
@@ -77,75 +53,103 @@ function Dashboard() {
     <div className="flex min-h-screen bg-background">
       <Sidebar />
 
-      <main className="flex-1 px-6 py-8 md:px-10">
+      <main className="flex-1 px-6 py-10 md:px-12">
         <header className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-              Visão executiva
-            </p>
-            <h1 className="mt-2 text-3xl font-extrabold tracking-tight">
-              Dashboard Financeiro
+            <h1 className="text-3xl font-extrabold uppercase tracking-[0.14em]">
+              Visão Executiva
             </h1>
+            <p className="mt-2 text-sm font-medium text-muted-foreground">
+              Exercício fiscal 2026 · Regime Simples Nacional
+            </p>
           </div>
-          <button className="rounded-lg bg-bronze px-5 py-2.5 text-sm font-bold text-bronze-foreground transition-opacity hover:opacity-90">
+          <button className="rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-opacity hover:opacity-90">
             Fechar Competência
           </button>
         </header>
 
-        <section className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {cards.map((c) => (
-            <article
-              key={c.label}
-              className="rounded-xl border border-primary/60 bg-card p-5"
-            >
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-medium text-muted-foreground">
-                  {c.label}
-                </p>
-                <c.icon className="h-4 w-4 text-primary" />
-              </div>
-              <p className="metric-value mt-4">{c.value}</p>
-              <p
-                className={
-                  "mt-3 flex items-center gap-1.5 text-xs font-semibold " +
-                  (c.up ? "text-primary" : "text-muted-foreground")
-                }
-              >
-                {c.up ? (
-                  <TrendingUp className="h-3.5 w-3.5" />
-                ) : (
-                  <TrendingDown className="h-3.5 w-3.5" />
-                )}
-                {c.delta}
-              </p>
-            </article>
-          ))}
-
-          <article className="rounded-xl border border-bronze bg-card p-5 shadow-[var(--shadow-premium)]">
+        <section className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          {/* Receita Bruta */}
+          <article className="rounded-xl border border-primary/70 bg-card p-6">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-medium text-bronze">Lucro Líquido</p>
-              <TrendingUp className="h-4 w-4 text-bronze" />
+              <p className="text-sm font-medium text-muted-foreground">
+                Receita Bruta
+              </p>
+              <Wallet className="h-4 w-4 text-primary" />
             </div>
-            <p className="metric-value mt-4 text-bronze">R$ 1.261.090</p>
-            <p className="mt-3 flex items-center gap-1.5 text-xs font-semibold text-bronze">
+            <p className="metric-value mt-5">R$ 48.123,00</p>
+            <p className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-primary">
               <TrendingUp className="h-3.5 w-3.5" />
-              +14,9% margem de 26,2%
+              +8,4% vs. mês anterior
+            </p>
+          </article>
+
+          {/* Despesas Operacionais */}
+          <article className="rounded-xl border border-border bg-card p-6">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-medium text-muted-foreground">
+                Despesas Operacionais
+              </p>
+              <Receipt className="h-4 w-4 text-muted-foreground" />
+            </div>
+            <p className="metric-value mt-5">R$ 29.381,00</p>
+            <p className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
+              <TrendingDown className="h-3.5 w-3.5" />
+              -2,1% vs. mês anterior
+            </p>
+          </article>
+
+          {/* Saldo IBS/CBS — carro-chefe */}
+          <article className="rounded-xl border-2 border-bronze bg-card p-6 shadow-[var(--shadow-premium)]">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-bronze">Saldo IBS/CBS</p>
+              <Coins className="h-4 w-4 text-bronze" />
+            </div>
+            <p className="metric-value mt-5 text-bronze">R$ 3.869,00</p>
+            <div className="mt-4 space-y-1.5 border-t border-bronze/30 pt-3">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-muted-foreground">Créditos Gerados</span>
+                <span className="font-semibold">R$ 5.200</span>
+              </div>
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-muted-foreground">Débitos Incidentes</span>
+                <span className="font-semibold">R$ 1.331</span>
+              </div>
+            </div>
+          </article>
+
+          {/* Lucro Líquido */}
+          <article className="rounded-xl border border-border bg-card p-6">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-medium text-muted-foreground">
+                Lucro Líquido
+              </p>
+              <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            </div>
+            <p className="metric-value mt-5">R$ 12.610,00</p>
+            <p className="mt-4 text-xs font-semibold text-muted-foreground">
+              Margem: 26,2%
             </p>
           </article>
         </section>
 
-        <section className="mt-6 rounded-xl border border-border bg-card p-6">
-          <div className="flex flex-wrap items-end justify-between gap-3">
+        <section className="mt-8 rounded-xl border border-border bg-card p-7">
+          <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <h2 className="text-lg font-bold">Evolução do Resultado</h2>
               <p className="text-sm text-muted-foreground">
-                Receita líquida consolidada · em milhões (R$)
+                Faturamento consolidado · em milhões (R$)
               </p>
             </div>
-            <p className="metric-value text-primary">R$ 3,42M</p>
+            <div className="text-right">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                Acumulado
+              </p>
+              <p className="metric-value mt-1 text-primary">R$ 3,42M</p>
+            </div>
           </div>
 
-          <div className="mt-6 h-[320px] w-full">
+          <div className="mt-8 h-[340px] w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={data} margin={{ left: -18, right: 8, top: 8 }}>
                 <defs>
@@ -188,7 +192,7 @@ function Dashboard() {
                     color: "var(--popover-foreground)",
                     fontSize: 12,
                   }}
-                  formatter={(v: number) => [`R$ ${v}M`, "Resultado"]}
+                  formatter={(v: number) => [`R$ ${v}M`, "Faturamento"]}
                 />
                 <Area
                   type="monotone"
