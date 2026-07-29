@@ -110,23 +110,23 @@ function Dashboard() {
 
             <div className="mt-6 space-y-4">
               {/* Linha 1 — Obrigação */}
-              <div className="flex items-center justify-between text-sm">
+              <div className="flex items-center justify-between gap-4 text-sm">
                 <span className="text-muted-foreground">Débitos ( sobre Vendas )</span>
-                <span className="font-semibold text-foreground">R$ 5.200</span>
+                <span className="whitespace-nowrap font-semibold text-foreground">R$ 5.200</span>
               </div>
 
               {/* Linha 2 — Economia/Ativo */}
-              <div className="flex items-center justify-between text-sm">
+              <div className="flex items-center justify-between gap-4 text-sm">
                 <span className="text-muted-foreground">Créditos ( sobre Compras )</span>
-                <span className="font-bold text-bronze">R$ 7.500</span>
+                <span className="whitespace-nowrap font-bold text-bronze">R$ 7.500</span>
               </div>
             </div>
 
             {/* Linha 3 — Resultado */}
             <div className="mt-5 border-t border-border pt-5">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-4">
                 <span className="text-sm text-muted-foreground">Saldo Credor a Compensar</span>
-                <span className="metric-value text-primary">R$ 2.300</span>
+                <span className="metric-value whitespace-nowrap text-primary">R$ 2.300</span>
               </div>
             </div>
           </article>
