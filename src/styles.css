@@ -73,7 +73,8 @@
   --secondary: oklch(0.3196 0.0121 258.37);
   --secondary-foreground: oklch(0.9553 0.007 88.64);
   --muted: oklch(0.3196 0.0121 258.37);
-  --muted-foreground: oklch(0.6727 0.0193 92.77);
+  /* #9CA3AF cinza */
+  --muted-foreground: oklch(0.7137 0.0192 261.32);
   --accent: oklch(0.3196 0.0121 258.37);
   --accent-foreground: oklch(0.9553 0.007 88.64);
   /* #CD7F32 bronze */

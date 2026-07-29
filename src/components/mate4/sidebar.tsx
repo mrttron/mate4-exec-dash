@@ -3,7 +3,6 @@ import {
   LayoutDashboard,
   ArrowLeftRight,
   FileText,
-  Percent,
   ShieldCheck,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
@@ -12,13 +11,12 @@ const items = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Fluxo de Caixa", url: "/", icon: ArrowLeftRight },
   { title: "Notas Fiscais", url: "/", icon: FileText },
-  { title: "Créditos IBS/CBS", url: "/", icon: Percent },
   { title: "Compliance", url: "/", icon: ShieldCheck },
 ];
 
 export function Sidebar() {
   return (
-    <aside className="hidden w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-4 py-6 md:flex">
+    <aside className="hidden w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-5 py-8 md:flex">
       <div className="flex items-center gap-2.5 px-2">
         <QueenIcon className="h-7 w-7 text-primary" />
         <span className="text-xl font-extrabold tracking-tight text-primary">
@@ -26,7 +24,7 @@ export function Sidebar() {
         </span>
       </div>
 
-      <nav className="mt-10 flex flex-col gap-1">
+      <nav className="mt-12 flex flex-col gap-1.5">
         {items.map((item, i) => (
           <Link
             key={item.title}
@@ -48,7 +46,7 @@ export function Sidebar() {
         <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           Exercício fiscal
         </p>
-        <p className="mt-1 text-sm font-bold">2026 · Regime Lucro Real</p>
+        <p className="mt-1 text-sm font-bold">2026 · Simples Nacional</p>
       </div>
     </aside>
   );
