@@ -9,7 +9,7 @@ import { QueenIcon } from "./queen-icon";
 
 const items = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Fluxo de Caixa", url: "/", icon: ArrowLeftRight },
+  { title: "Fluxo de Caixa", url: "/fluxo-de-caixa", icon: ArrowLeftRight },
   { title: "Notas Fiscais", url: "/", icon: FileText },
   { title: "Compliance", url: "/", icon: ShieldCheck },
 ];
@@ -25,16 +25,17 @@ export function Sidebar() {
       </div>
 
       <nav className="mt-12 flex flex-col gap-1.5">
-        {items.map((item, i) => (
+        {items.map((item) => (
           <Link
             key={item.title}
             to={item.url}
-            className={
-              "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors " +
-              (i === 0
-                ? "bg-primary/20 text-foreground"
-                : "text-muted-foreground hover:bg-sidebar-accent hover:text-foreground")
-            }
+            activeOptions={{ exact: true }}
+            activeProps={{ className: "bg-primary/20 text-foreground" }}
+            inactiveProps={{
+              className:
+                "text-muted-foreground hover:bg-sidebar-accent hover:text-foreground",
+            }}
+            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors"
           >
             <item.icon className="h-4.5 w-4.5" />
             {item.title}
