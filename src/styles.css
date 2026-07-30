@@ -41,6 +41,8 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-bronze: var(--bronze);
   --color-bronze-foreground: var(--bronze-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -80,6 +82,9 @@
   /* #CD7F32 bronze */
   --bronze: oklch(0.6661 0.1315 61.29);
   --bronze-foreground: oklch(0.2293 0.009 255.6);
+  /* #F59E0B amarelo alerta */
+  --warning: oklch(0.7686 0.1647 70.08);
+  --warning-foreground: oklch(0.2293 0.009 255.6);
   /* #EF4444 vermelho suave */
   --destructive: oklch(0.6368 0.2078 25.33);
   --destructive-foreground: oklch(0.9553 0.007 88.64);
