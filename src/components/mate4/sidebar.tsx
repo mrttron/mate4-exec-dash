@@ -9,7 +9,7 @@ import { QueenIcon } from "./queen-icon";
 
 const items = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Fluxo de Caixa", url: "/", icon: ArrowLeftRight },
+  { title: "Fluxo de Caixa", url: "/fluxo-de-caixa", icon: ArrowLeftRight },
   { title: "Notas Fiscais", url: "/", icon: FileText },
   { title: "Compliance", url: "/", icon: ShieldCheck },
 ];

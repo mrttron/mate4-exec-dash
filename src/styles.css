@@ -80,7 +80,8 @@
   /* #CD7F32 bronze */
   --bronze: oklch(0.6661 0.1315 61.29);
   --bronze-foreground: oklch(0.2293 0.009 255.6);
-  --destructive: oklch(0.577 0.185 27.325);
+  /* #EF4444 vermelho suave */
+  --destructive: oklch(0.6368 0.2078 25.33);
   --destructive-foreground: oklch(0.9553 0.007 88.64);
   --border: oklch(0.3196 0.0121 258.37);
   --input: oklch(0.3196 0.0121 258.37);
