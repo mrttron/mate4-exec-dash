@@ -4,14 +4,29 @@ import {
   ArrowLeftRight,
   FileText,
   ShieldCheck,
+  Building2,
+  ChevronDown,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const items = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Fluxo de Caixa", url: "/fluxo-de-caixa", icon: ArrowLeftRight },
   { title: "Notas Fiscais", url: "/notas-fiscais", icon: FileText },
   { title: "Compliance", url: "/compliance", icon: ShieldCheck },
+];
+
+const empresas = [
+  { id: "tech-solutions", nome: "Tech Solutions LTDA" },
+  { id: "mate-holding", nome: "MATE4 Holding" },
+  { id: "consultoria-beta", nome: "Consultoria Beta ME" },
 ];
 
 export function Sidebar() {
