@@ -32,14 +32,37 @@ const empresas = [
 export function Sidebar() {
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-5 py-8 md:flex">
-      <div className="flex items-center gap-2.5 px-2">
-        <QueenIcon className="h-7 w-7 text-primary" />
-        <span className="text-xl font-extrabold tracking-tight text-primary">
-          MATE4
-        </span>
+      <div className="px-2">
+        <div className="flex items-center gap-2.5">
+          <QueenIcon className="h-7 w-7 text-primary" />
+          <span className="text-xl font-extrabold tracking-tight text-primary">
+            MATE4
+          </span>
+        </div>
+
+        <Select defaultValue={empresas[0].id}>
+          <SelectTrigger
+            className="mt-4 h-9 w-full border-border bg-card text-sm font-medium text-foreground transition-colors hover:border-primary/70 focus:ring-0 focus:ring-offset-0 [&>span]:flex [&>span]:items-center [&>span]:gap-2"
+            aria-label="Selecionar empresa"
+          >
+            <Building2 className="h-4 w-4 text-muted-foreground" />
+            <SelectValue placeholder="Selecionar empresa" />
+          </SelectTrigger>
+          <SelectContent className="border-border bg-card text-foreground">
+            {empresas.map((empresa) => (
+              <SelectItem
+                key={empresa.id}
+                value={empresa.id}
+                className="cursor-pointer focus:bg-primary/20 focus:text-foreground"
+              >
+                {empresa.nome}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
 
-      <nav className="mt-12 flex flex-col gap-1.5">
+      <nav className="mt-10 flex flex-col gap-1.5">
         {items.map((item) => (
           <Link
             key={item.title}
