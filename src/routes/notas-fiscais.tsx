@@ -156,7 +156,7 @@ function NotasFiscais() {
 
           <article className="rounded-xl border border-primary/70 bg-card p-6">
             <p className="text-sm font-medium text-muted-foreground">
-              Recebidas (Stone)
+              Total Recebido
             </p>
             <p className="metric-value mt-5 text-primary">R$ 38.500,00</p>
           </article>
