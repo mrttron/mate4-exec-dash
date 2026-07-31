@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Plus } from "lucide-react";
+import { Upload } from "lucide-react";
 import { Sidebar } from "@/components/mate4/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -119,8 +119,8 @@ function FluxoDeCaixa() {
             onClick={() => setOpen(true)}
             className="rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90"
           >
-            <Plus className="h-4 w-4" />
-            Novo Lançamento
+            <Upload className="h-4 w-4" />
+            + Importar OFX/CSV
           </Button>
         </header>
 
