@@ -5,7 +5,6 @@ import {
   FileText,
   ShieldCheck,
   Building2,
-  ChevronDown,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
 import {
