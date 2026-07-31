@@ -11,7 +11,7 @@ const items = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Fluxo de Caixa", url: "/fluxo-de-caixa", icon: ArrowLeftRight },
   { title: "Notas Fiscais", url: "/notas-fiscais", icon: FileText },
-  { title: "Compliance", url: "/", icon: ShieldCheck },
+  { title: "Compliance", url: "/compliance", icon: ShieldCheck },
 ];
 
 export function Sidebar() {
