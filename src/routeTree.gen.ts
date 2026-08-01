@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as NotasFiscaisRouteImport } from './routes/notas-fiscais'
 import { Route as FluxoDeCaixaRouteImport } from './routes/fluxo-de-caixa'
 import { Route as ComplianceRouteImport } from './routes/compliance'
+import { Route as CentralDeAcoesRouteImport } from './routes/central-de-acoes'
 import { Route as IndexRouteImport } from './routes/index'
 
 const NotasFiscaisRoute = NotasFiscaisRouteImport.update({
@@ -29,6 +30,11 @@ const ComplianceRoute = ComplianceRouteImport.update({
   path: '/compliance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CentralDeAcoesRoute = CentralDeAcoesRouteImport.update({
+  id: '/central-de-acoes',
+  path: '/central-de-acoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -37,12 +43,14 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/central-de-acoes': typeof CentralDeAcoesRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/central-de-acoes': typeof CentralDeAcoesRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
@@ -50,20 +58,38 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/central-de-acoes': typeof CentralDeAcoesRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/compliance' | '/fluxo-de-caixa' | '/notas-fiscais'
+  fullPaths:
+    | '/'
+    | '/central-de-acoes'
+    | '/compliance'
+    | '/fluxo-de-caixa'
+    | '/notas-fiscais'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/compliance' | '/fluxo-de-caixa' | '/notas-fiscais'
-  id: '__root__' | '/' | '/compliance' | '/fluxo-de-caixa' | '/notas-fiscais'
+  to:
+    | '/'
+    | '/central-de-acoes'
+    | '/compliance'
+    | '/fluxo-de-caixa'
+    | '/notas-fiscais'
+  id:
+    | '__root__'
+    | '/'
+    | '/central-de-acoes'
+    | '/compliance'
+    | '/fluxo-de-caixa'
+    | '/notas-fiscais'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CentralDeAcoesRoute: typeof CentralDeAcoesRoute
   ComplianceRoute: typeof ComplianceRoute
   FluxoDeCaixaRoute: typeof FluxoDeCaixaRoute
   NotasFiscaisRoute: typeof NotasFiscaisRoute
@@ -92,6 +118,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComplianceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/central-de-acoes': {
+      id: '/central-de-acoes'
+      path: '/central-de-acoes'
+      fullPath: '/central-de-acoes'
+      preLoaderRoute: typeof CentralDeAcoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -104,6 +137,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CentralDeAcoesRoute: CentralDeAcoesRoute,
   ComplianceRoute: ComplianceRoute,
   FluxoDeCaixaRoute: FluxoDeCaixaRoute,
   NotasFiscaisRoute: NotasFiscaisRoute,
