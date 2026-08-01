@@ -5,6 +5,7 @@ import {
   ArrowLeftRight,
   FileText,
   ShieldCheck,
+  Brain,
   Building2,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
@@ -22,6 +23,7 @@ const items = [
   { title: "Fluxo de Caixa", url: "/fluxo-de-caixa", icon: ArrowLeftRight },
   { title: "Notas Fiscais", url: "/notas-fiscais", icon: FileText },
   { title: "Compliance", url: "/compliance", icon: ShieldCheck },
+  { title: "Inteligência IBS/CBS", url: "/inteligencia-ibs-cbs", icon: Brain },
 ];
 
 const empresas = [
