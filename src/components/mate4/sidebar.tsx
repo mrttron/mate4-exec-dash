@@ -23,6 +23,7 @@ const items = [
   { title: "Fluxo de Caixa", url: "/fluxo-de-caixa", icon: ArrowLeftRight },
   { title: "Notas Fiscais", url: "/notas-fiscais", icon: FileText },
   { title: "Compliance", url: "/compliance", icon: ShieldCheck },
+  { title: "Inteligência IBS/CBS", url: "/inteligencia-ibs-cbs", icon: Brain },
 ];
 
 const empresas = [

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as NotasFiscaisRouteImport } from './routes/notas-fiscais'
+import { Route as InteligenciaIbsCbsRouteImport } from './routes/inteligencia-ibs-cbs'
 import { Route as FluxoDeCaixaRouteImport } from './routes/fluxo-de-caixa'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as CentralDeAcoesRouteImport } from './routes/central-de-acoes'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const NotasFiscaisRoute = NotasFiscaisRouteImport.update({
   id: '/notas-fiscais',
   path: '/notas-fiscais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InteligenciaIbsCbsRoute = InteligenciaIbsCbsRouteImport.update({
+  id: '/inteligencia-ibs-cbs',
+  path: '/inteligencia-ibs-cbs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FluxoDeCaixaRoute = FluxoDeCaixaRouteImport.update({
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/central-de-acoes': typeof CentralDeAcoesRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
+  '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/central-de-acoes': typeof CentralDeAcoesRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
+  '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
 }
 export interface FileRoutesById {
@@ -61,6 +69,7 @@ export interface FileRoutesById {
   '/central-de-acoes': typeof CentralDeAcoesRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
+  '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
 }
 export interface FileRouteTypes {
@@ -70,6 +79,7 @@ export interface FileRouteTypes {
     | '/central-de-acoes'
     | '/compliance'
     | '/fluxo-de-caixa'
+    | '/inteligencia-ibs-cbs'
     | '/notas-fiscais'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -77,6 +87,7 @@ export interface FileRouteTypes {
     | '/central-de-acoes'
     | '/compliance'
     | '/fluxo-de-caixa'
+    | '/inteligencia-ibs-cbs'
     | '/notas-fiscais'
   id:
     | '__root__'
@@ -84,6 +95,7 @@ export interface FileRouteTypes {
     | '/central-de-acoes'
     | '/compliance'
     | '/fluxo-de-caixa'
+    | '/inteligencia-ibs-cbs'
     | '/notas-fiscais'
   fileRoutesById: FileRoutesById
 }
@@ -92,6 +104,7 @@ export interface RootRouteChildren {
   CentralDeAcoesRoute: typeof CentralDeAcoesRoute
   ComplianceRoute: typeof ComplianceRoute
   FluxoDeCaixaRoute: typeof FluxoDeCaixaRoute
+  InteligenciaIbsCbsRoute: typeof InteligenciaIbsCbsRoute
   NotasFiscaisRoute: typeof NotasFiscaisRoute
 }
 
@@ -102,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/notas-fiscais'
       fullPath: '/notas-fiscais'
       preLoaderRoute: typeof NotasFiscaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inteligencia-ibs-cbs': {
+      id: '/inteligencia-ibs-cbs'
+      path: '/inteligencia-ibs-cbs'
+      fullPath: '/inteligencia-ibs-cbs'
+      preLoaderRoute: typeof InteligenciaIbsCbsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fluxo-de-caixa': {
@@ -140,8 +160,19 @@ const rootRouteChildren: RootRouteChildren = {
   CentralDeAcoesRoute: CentralDeAcoesRoute,
   ComplianceRoute: ComplianceRoute,
   FluxoDeCaixaRoute: FluxoDeCaixaRoute,
+  InteligenciaIbsCbsRoute: InteligenciaIbsCbsRoute,
   NotasFiscaisRoute: NotasFiscaisRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
