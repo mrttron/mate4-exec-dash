@@ -5,6 +5,7 @@ import {
   ArrowLeftRight,
   FileText,
   ShieldCheck,
+  Brain,
   Building2,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
