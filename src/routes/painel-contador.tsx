@@ -33,7 +33,17 @@ export const Route = createFileRoute("/painel-contador")({
   component: PainelContador,
 });
 
-const empresas = [
+type BadgeVariant = "green" | "yellow" | "red";
+
+interface Empresa {
+  id: number;
+  nome: string;
+  regime: string;
+  status: { label: string; variant: BadgeVariant };
+  certificado: { label: string; variant: BadgeVariant };
+}
+
+const empresas: Empresa[] = [
   {
     id: 1,
     nome: "Tech Solutions LTDA",

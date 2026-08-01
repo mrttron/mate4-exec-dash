@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PainelContadorRouteImport } from './routes/painel-contador'
 import { Route as NotasFiscaisRouteImport } from './routes/notas-fiscais'
 import { Route as InteligenciaIbsCbsRouteImport } from './routes/inteligencia-ibs-cbs'
 import { Route as FluxoDeCaixaRouteImport } from './routes/fluxo-de-caixa'
@@ -16,6 +17,11 @@ import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as CentralDeAcoesRouteImport } from './routes/central-de-acoes'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PainelContadorRoute = PainelContadorRouteImport.update({
+  id: '/painel-contador',
+  path: '/painel-contador',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NotasFiscaisRoute = NotasFiscaisRouteImport.update({
   id: '/notas-fiscais',
   path: '/notas-fiscais',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
+  '/painel-contador': typeof PainelContadorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
+  '/painel-contador': typeof PainelContadorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
+  '/painel-contador': typeof PainelContadorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/fluxo-de-caixa'
     | '/inteligencia-ibs-cbs'
     | '/notas-fiscais'
+    | '/painel-contador'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/fluxo-de-caixa'
     | '/inteligencia-ibs-cbs'
     | '/notas-fiscais'
+    | '/painel-contador'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/fluxo-de-caixa'
     | '/inteligencia-ibs-cbs'
     | '/notas-fiscais'
+    | '/painel-contador'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,10 +118,18 @@ export interface RootRouteChildren {
   FluxoDeCaixaRoute: typeof FluxoDeCaixaRoute
   InteligenciaIbsCbsRoute: typeof InteligenciaIbsCbsRoute
   NotasFiscaisRoute: typeof NotasFiscaisRoute
+  PainelContadorRoute: typeof PainelContadorRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/painel-contador': {
+      id: '/painel-contador'
+      path: '/painel-contador'
+      fullPath: '/painel-contador'
+      preLoaderRoute: typeof PainelContadorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/notas-fiscais': {
       id: '/notas-fiscais'
       path: '/notas-fiscais'
@@ -162,7 +182,18 @@ const rootRouteChildren: RootRouteChildren = {
   FluxoDeCaixaRoute: FluxoDeCaixaRoute,
   InteligenciaIbsCbsRoute: InteligenciaIbsCbsRoute,
   NotasFiscaisRoute: NotasFiscaisRoute,
+  PainelContadorRoute: PainelContadorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
