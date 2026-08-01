@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import {
+  ClipboardCheck,
   LayoutDashboard,
   ArrowLeftRight,
   FileText,
@@ -16,6 +17,7 @@ import {
 } from "@/components/ui/select";
 
 const items = [
+  { title: "Central de Ações", url: "/central-de-acoes", icon: ClipboardCheck },
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Fluxo de Caixa", url: "/fluxo-de-caixa", icon: ArrowLeftRight },
   { title: "Notas Fiscais", url: "/notas-fiscais", icon: FileText },
