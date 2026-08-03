@@ -1,25 +1,15 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Upload } from "lucide-react";
+import { toast } from "sonner";
 import { Sidebar } from "@/components/mate4/sidebar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
-  DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 export const Route = createFileRoute("/fluxo-de-caixa")({
   head: () => ({
@@ -86,6 +76,15 @@ const rows = [
 function FluxoDeCaixa() {
   const [active, setActive] = useState("Mês Atual");
   const [open, setOpen] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const handleProcess = () => {
+    setOpen(false);
+    toast.success("Extrato importado com sucesso!", {
+      duration: 3000,
+    });
+  };
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -214,70 +213,66 @@ function FluxoDeCaixa() {
       </main>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="border-border bg-card sm:max-w-[460px]">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-extrabold">
-              Novo Lançamento
-            </DialogTitle>
-            <DialogDescription className="text-muted-foreground">
-              Registre uma entrada ou saída no fluxo de caixa.
-            </DialogDescription>
-          </DialogHeader>
+        <DialogContent
+          className="border-border sm:max-w-[480px]"
+          style={{ backgroundColor: "#25282D" }}
+        >
+          <DialogTitle className="text-xl font-extrabold">
+            Importar Extrato
+          </DialogTitle>
+          <DialogDescription className="text-muted-foreground">
+            Envie um arquivo OFX ou CSV para alimentar o fluxo de caixa.
+          </DialogDescription>
 
-          <form
-            className="mt-2 space-y-5"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setOpen(false);
-            }}
-          >
-            <div className="space-y-2">
-              <Label htmlFor="valor">Valor (R$)</Label>
-              <Input id="valor" placeholder="0,00" inputMode="decimal" />
-            </div>
+          <div className="mt-4 space-y-5">
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragging(true);
+              }}
+              onDragLeave={() => setDragging(false)}
+              onDrop={(e) => {
+                e.preventDefault();
+                setDragging(false);
+              }}
+              className={
+                "flex w-full flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed px-6 py-12 transition-colors hover:border-primary " +
+                (dragging
+                  ? "border-primary bg-primary/10"
+                  : "border-muted-foreground bg-[#1A1D21]/60")
+              }
+            >
+              <Upload className="h-9 w-9 text-muted-foreground" />
+              <span className="text-center text-sm font-medium text-muted-foreground">
+                Arraste seu arquivo OFX ou CSV aqui
+              </span>
+            </button>
+            <input
+              ref={fileRef}
+              type="file"
+              accept=".ofx,.csv"
+              className="hidden"
+            />
 
-            <div className="space-y-2">
-              <Label htmlFor="data">Data</Label>
-              <Input id="data" type="date" />
-            </div>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => fileRef.current?.click()}
+              className="w-full border-border bg-[#1A1D21] text-foreground hover:bg-[#1A1D21]/80 hover:text-foreground"
+            >
+              Selecionar no Computador
+            </Button>
 
-            <div className="space-y-2">
-              <Label htmlFor="categoria">Categoria</Label>
-              <Select>
-                <SelectTrigger id="categoria" className="w-full">
-                  <SelectValue placeholder="Selecione a categoria" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="servicos">Prestação de Serviços</SelectItem>
-                  <SelectItem value="insumos">Insumos</SelectItem>
-                  <SelectItem value="tecnologia">Tecnologia</SelectItem>
-                  <SelectItem value="pessoal">Pessoal</SelectItem>
-                  <SelectItem value="impostos">Impostos</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="descricao">Descrição</Label>
-              <Input id="descricao" placeholder="Ex.: Pagamento Serviço X" />
-            </div>
-
-            <DialogFooter className="gap-2 pt-2">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setOpen(false)}
-              >
-                Cancelar
-              </Button>
-              <Button
-                type="submit"
-                className="bg-primary font-bold text-primary-foreground hover:bg-primary/90"
-              >
-                Salvar Lançamento
-              </Button>
-            </DialogFooter>
-          </form>
+            <Button
+              type="button"
+              onClick={handleProcess}
+              className="w-full rounded-lg bg-primary py-3 text-base font-bold text-primary-foreground hover:bg-primary/90"
+            >
+              Processar Extrato
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
