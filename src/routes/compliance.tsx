@@ -128,9 +128,82 @@ function Compliance() {
             </ul>
           </div>
 
-          {/* Solicitações */}
+          {/* Certificado Digital + Solicitações */}
           <div className="rounded-xl border border-border bg-card p-7">
-            <h2 className="text-lg font-bold">Envie seus Documentos</h2>
+            <h2 className="text-lg font-bold">Certificado Digital</h2>
+            <p className="text-sm text-muted-foreground">
+              Conecte o certificado .pfx da empresa
+            </p>
+
+            {!certificadoEnviado ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => certInputRef.current?.click()}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setDragging(true);
+                  }}
+                  onDragLeave={() => setDragging(false)}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setDragging(false);
+                    setCertificadoEnviado(true);
+                  }}
+                  className={
+                    "mt-6 flex w-full flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed px-6 py-10 transition-colors hover:border-primary " +
+                    (dragging
+                      ? "border-primary bg-primary/10"
+                      : "border-muted-foreground bg-background/30")
+                  }
+                >
+                  <UploadCloud className="h-9 w-9 text-muted-foreground" />
+                  <span className="text-sm font-medium text-muted-foreground">
+                    Arraste o certificado .pfx ou clique para enviar
+                  </span>
+                </button>
+                <input
+                  ref={certInputRef}
+                  type="file"
+                  accept=".pfx"
+                  className="hidden"
+                  onChange={() => setCertificadoEnviado(true)}
+                />
+              </>
+            ) : (
+              <div className="mt-6 flex items-center justify-between rounded-xl border border-border bg-background/40 p-5">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/15">
+                    <FileCheck className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-foreground">
+                      Certificado Conectado
+                    </p>
+                    <p className="truncate text-xs text-muted-foreground">
+                      certificado_empresa.pfx
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Validade: <span className="text-foreground">15/09/2026</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end gap-2">
+                  <Badge className="border-transparent bg-primary/15 text-primary hover:bg-primary/20">
+                    Válido
+                  </Badge>
+                  <button
+                    type="button"
+                    onClick={() => setCertificadoEnviado(false)}
+                    className="text-xs font-semibold text-muted-foreground underline-offset-2 transition-colors hover:text-foreground hover:underline"
+                  >
+                    Trocar Certificado
+                  </button>
+                </div>
+              </div>
+            )}
+
+            <h2 className="mt-8 text-lg font-bold">Envie seus Documentos</h2>
             <p className="text-sm text-muted-foreground">
               Área segura para anexar comprovantes solicitados
             </p>
@@ -148,7 +221,7 @@ function Compliance() {
                 setDragging(false);
               }}
               className={
-                "mt-6 flex w-full flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed px-6 py-12 transition-colors hover:border-primary " +
+                "mt-4 flex w-full flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed px-6 py-10 transition-colors hover:border-primary " +
                 (dragging
                   ? "border-primary bg-primary/10"
                   : "border-muted-foreground bg-background/30")
