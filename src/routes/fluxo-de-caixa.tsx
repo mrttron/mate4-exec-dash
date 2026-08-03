@@ -76,6 +76,15 @@ const rows = [
 function FluxoDeCaixa() {
   const [active, setActive] = useState("Mês Atual");
   const [open, setOpen] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const handleProcess = () => {
+    setOpen(false);
+    toast.success("Extrato importado com sucesso!", {
+      duration: 3000,
+    });
+  };
 
   return (
     <div className="flex min-h-screen bg-background">
