@@ -1,8 +1,15 @@
 import { useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ShieldCheck, FileText, Download, UploadCloud } from "lucide-react";
+import {
+  ShieldCheck,
+  FileText,
+  Download,
+  UploadCloud,
+  FileCheck,
+} from "lucide-react";
 import { Sidebar } from "@/components/mate4/sidebar";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/compliance")({
   head: () => ({
