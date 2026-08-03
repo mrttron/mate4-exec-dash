@@ -100,6 +100,7 @@ const notas: Nota[] = [
 function NotasFiscais() {
   const [active, setActive] = useState<(typeof filters)[number]>("Todas");
   const [open, setOpen] = useState(false);
+  const [prefilledValor, setPrefilledValor] = useState("");
 
   const visible = notas.filter((n) =>
     active === "Todas"
@@ -138,7 +139,10 @@ function NotasFiscais() {
           </div>
 
           <Button
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              setPrefilledValor("");
+              setOpen(true);
+            }}
             className="rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90"
           >
             <Plus className="h-4 w-4" />
@@ -169,7 +173,22 @@ function NotasFiscais() {
           </article>
         </section>
 
-        <section className="mt-8 rounded-xl border border-border bg-card p-7">
+        <div className="mt-8 flex items-center justify-between gap-4 rounded-xl border border-warning bg-warning/10 p-5">
+          <p className="text-sm text-foreground">
+            💰 Recebimento de R$ 5.000,00 identificado no fluxo de caixa, mas sem nota fiscal vinculada.
+          </p>
+          <Button
+            onClick={() => {
+              setPrefilledValor("5000.00");
+              setOpen(true);
+            }}
+            className="shrink-0 rounded-lg bg-primary px-4 py-2 text-xs font-bold text-primary-foreground hover:bg-primary/90"
+          >
+            Pré-preencher Nota
+          </Button>
+        </div>
+
+        <section className="mt-6 rounded-xl border border-border bg-card p-7">
           <h2 className="text-lg font-bold">Notas emitidas</h2>
           <p className="text-sm text-muted-foreground">
             Acompanhe status de recebimento e retenções automatizadas
@@ -291,7 +310,13 @@ function NotasFiscais() {
 
             <div className="space-y-2">
               <Label htmlFor="valor-nota">Valor da Nota</Label>
-              <Input id="valor-nota" placeholder="0,00" inputMode="decimal" />
+              <Input
+                id="valor-nota"
+                placeholder="0,00"
+                inputMode="decimal"
+                value={prefilledValor}
+                onChange={(e) => setPrefilledValor(e.target.value)}
+              />
             </div>
 
             <div className="space-y-2">
