@@ -102,7 +102,6 @@ function NotasFiscais() {
   const [open, setOpen] = useState(false);
   const [prefilledValor, setPrefilledValor] = useState("");
 
-
   const visible = notas.filter((n) =>
     active === "Todas"
       ? true
