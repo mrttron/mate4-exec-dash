@@ -50,7 +50,9 @@ const solicitacoes = [
 function Compliance() {
   const [dragging, setDragging] = useState(false);
   const [checked, setChecked] = useState<Record<string, boolean>>({});
+  const [certificadoEnviado, setCertificadoEnviado] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const certInputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="flex min-h-screen bg-background">
