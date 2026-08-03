@@ -140,7 +140,10 @@ function NotasFiscais() {
           </div>
 
           <Button
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              setPrefilledValor("");
+              setOpen(true);
+            }}
             className="rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90"
           >
             <Plus className="h-4 w-4" />
