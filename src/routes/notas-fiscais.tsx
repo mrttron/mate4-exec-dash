@@ -311,7 +311,13 @@ function NotasFiscais() {
 
             <div className="space-y-2">
               <Label htmlFor="valor-nota">Valor da Nota</Label>
-              <Input id="valor-nota" placeholder="0,00" inputMode="decimal" />
+              <Input
+                id="valor-nota"
+                placeholder="0,00"
+                inputMode="decimal"
+                value={prefilledValor}
+                onChange={(e) => setPrefilledValor(e.target.value)}
+              />
             </div>
 
             <div className="space-y-2">
