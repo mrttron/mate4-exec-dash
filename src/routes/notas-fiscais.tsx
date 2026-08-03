@@ -100,6 +100,8 @@ const notas: Nota[] = [
 function NotasFiscais() {
   const [active, setActive] = useState<(typeof filters)[number]>("Todas");
   const [open, setOpen] = useState(false);
+  const [prefilledValor, setPrefilledValor] = useState("");
+
 
   const visible = notas.filter((n) =>
     active === "Todas"
