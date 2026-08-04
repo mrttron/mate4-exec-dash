@@ -28,6 +28,10 @@ const items = [
   { title: "Inteligência IBS/CBS", url: "/inteligencia-ibs-cbs", icon: Brain },
 ];
 
+const adminItems = [
+  { title: "Painel do Contador", url: "/painel-contador", icon: Briefcase },
+];
+
 const empresas = [
   { id: "tech-solutions", nome: "Tech Solutions LTDA" },
   { id: "mate-holding", nome: "MATE4 Holding" },
@@ -35,6 +39,10 @@ const empresas = [
 ];
 
 export function Sidebar() {
+  const { userRole } = useUserRole();
+  const navItems =
+    userRole === "admin" ? [...items, ...adminItems] : items;
+
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-5 py-8 md:flex">
       <div className="px-2">
