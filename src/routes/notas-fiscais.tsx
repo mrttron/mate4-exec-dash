@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Plus, Eye, Download } from "lucide-react";
+import { Plus, Eye, Download, FolderOpen } from "lucide-react";
 import { Sidebar } from "@/components/mate4/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -195,83 +195,94 @@ function NotasFiscais() {
           </p>
 
           <div className="mt-6 overflow-x-auto">
-            <table className="w-full min-w-[820px] border-collapse text-sm">
-              <thead>
-                <tr className="border-b border-border text-left">
-                  {["Nº da Nota", "Cliente", "Descrição do Serviço"].map((h) => (
-                    <th
-                      key={h}
-                      className="px-3 py-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground"
-                    >
-                      {h}
-                    </th>
-                  ))}
-                  <th className="px-3 py-3 text-right text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    Valor
-                  </th>
-                  <th className="px-3 py-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    Status
-                  </th>
-                  <th className="px-3 py-3 text-right text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    Ações
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {visible.map((n) => (
-                  <tr
-                    key={n.numero}
-                    className="border-b border-border/60 last:border-0"
-                  >
-                    <td className="whitespace-nowrap px-3 py-4 font-semibold tabular-nums text-muted-foreground">
-                      {n.numero}
-                    </td>
-                    <td className="px-3 py-4">
-                      <span className="font-semibold">{n.cliente}</span>
-                      {n.nota && (
-                        <span className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-bronze">
-                          {n.nota}
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-3 py-4 text-muted-foreground">
-                      {n.servico}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-right font-bold tabular-nums">
-                      {n.valor}
-                    </td>
-                    <td className="px-3 py-4">
-                      <span
-                        className={
-                          "inline-flex whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-semibold " +
-                          (n.status === "Paga"
-                            ? "bg-primary/25 text-foreground"
-                            : "bg-warning/15 text-warning")
-                        }
+            {visible.length === 0 ? (
+              <div className="flex min-h-[260px] flex-col items-center justify-center gap-3 rounded-xl border border-border bg-card/50 text-center">
+                <FolderOpen className="h-10 w-10 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">
+                  Nenhuma nota emitida.
+                  <br />
+                  Clique em + Emitir NFS-e para começar.
+                </p>
+              </div>
+            ) : (
+              <table className="w-full min-w-[820px] border-collapse text-sm">
+                <thead>
+                  <tr className="border-b border-border text-left">
+                    {["Nº da Nota", "Cliente", "Descrição do Serviço"].map((h) => (
+                      <th
+                        key={h}
+                        className="px-3 py-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground"
                       >
-                        {n.status}
-                      </span>
-                    </td>
-                    <td className="px-3 py-4">
-                      <div className="flex items-center justify-end gap-3 text-muted-foreground">
-                        <button
-                          aria-label={`Visualizar ${n.numero}`}
-                          className="transition-colors hover:text-foreground"
-                        >
-                          <Eye className="h-4 w-4" />
-                        </button>
-                        <button
-                          aria-label={`Baixar PDF da ${n.numero}`}
-                          className="transition-colors hover:text-foreground"
-                        >
-                          <Download className="h-4 w-4" />
-                        </button>
-                      </div>
-                    </td>
+                        {h}
+                      </th>
+                    ))}
+                    <th className="px-3 py-3 text-right text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      Valor
+                    </th>
+                    <th className="px-3 py-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      Status
+                    </th>
+                    <th className="px-3 py-3 text-right text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      Ações
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {visible.map((n) => (
+                    <tr
+                      key={n.numero}
+                      className="border-b border-border/60 last:border-0"
+                    >
+                      <td className="whitespace-nowrap px-3 py-4 font-semibold tabular-nums text-muted-foreground">
+                        {n.numero}
+                      </td>
+                      <td className="px-3 py-4">
+                        <span className="font-semibold">{n.cliente}</span>
+                        {n.nota && (
+                          <span className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-bronze">
+                            {n.nota}
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-3 py-4 text-muted-foreground">
+                        {n.servico}
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 text-right font-bold tabular-nums">
+                        {n.valor}
+                      </td>
+                      <td className="px-3 py-4">
+                        <span
+                          className={
+                            "inline-flex whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-semibold " +
+                            (n.status === "Paga"
+                              ? "bg-primary/25 text-foreground"
+                              : "bg-warning/15 text-warning")
+                          }
+                        >
+                          {n.status}
+                        </span>
+                      </td>
+                      <td className="px-3 py-4">
+                        <div className="flex items-center justify-end gap-3 text-muted-foreground">
+                          <button
+                            aria-label={`Visualizar ${n.numero}`}
+                            className="transition-colors hover:text-foreground"
+                          >
+                            <Eye className="h-4 w-4" />
+                          </button>
+                          <button
+                            aria-label={`Baixar PDF da ${n.numero}`}
+                            className="transition-colors hover:text-foreground"
+                          >
+                            <Download className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </section>
       </main>
