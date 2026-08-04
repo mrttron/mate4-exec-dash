@@ -153,61 +153,72 @@ function FluxoDeCaixa() {
           </p>
 
           <div className="mt-6 overflow-x-auto">
-            <table className="w-full min-w-[680px] border-collapse text-sm">
-              <thead>
-                <tr className="border-b border-border text-left">
-                  {["Data", "Descrição", "Categoria", "Tipo"].map((h) => (
-                    <th
-                      key={h}
-                      className="px-3 py-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground"
-                    >
-                      {h}
+            {rows.length === 0 ? (
+              <div className="flex min-h-[260px] flex-col items-center justify-center gap-3 rounded-xl border border-border bg-card/50 text-center">
+                <FolderOpen className="h-10 w-10 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">
+                  Nenhum lançamento encontrado.
+                  <br />
+                  Importe seu primeiro extrato OFX/CSV para começar.
+                </p>
+              </div>
+            ) : (
+              <table className="w-full min-w-[680px] border-collapse text-sm">
+                <thead>
+                  <tr className="border-b border-border text-left">
+                    {["Data", "Descrição", "Categoria", "Tipo"].map((h) => (
+                      <th
+                        key={h}
+                        className="px-3 py-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground"
+                      >
+                        {h}
+                      </th>
+                    ))}
+                    <th className="px-3 py-3 text-right text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                      Valor
                     </th>
-                  ))}
-                  <th className="px-3 py-3 text-right text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    Valor
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((r) => {
-                  const isIn = r.type === "Entrada";
-                  return (
-                    <tr
-                      key={r.date + r.desc}
-                      className="border-b border-border/60 last:border-0"
-                    >
-                      <td className="whitespace-nowrap px-3 py-4 text-muted-foreground">
-                        {r.date}
-                      </td>
-                      <td className="px-3 py-4 font-semibold">{r.desc}</td>
-                      <td className="px-3 py-4 text-muted-foreground">{r.cat}</td>
-                      <td className="px-3 py-4">
-                        <span
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((r) => {
+                    const isIn = r.type === "Entrada";
+                    return (
+                      <tr
+                        key={r.date + r.desc}
+                        className="border-b border-border/60 last:border-0"
+                      >
+                        <td className="whitespace-nowrap px-3 py-4 text-muted-foreground">
+                          {r.date}
+                        </td>
+                        <td className="px-3 py-4 font-semibold">{r.desc}</td>
+                        <td className="px-3 py-4 text-muted-foreground">{r.cat}</td>
+                        <td className="px-3 py-4">
+                          <span
+                            className={
+                              "inline-flex rounded-full px-2.5 py-1 text-xs font-semibold " +
+                              (isIn
+                                ? "bg-primary/20 text-primary-foreground"
+                                : "bg-destructive/15 text-destructive")
+                            }
+                          >
+                            {r.type}
+                          </span>
+                        </td>
+                        <td
                           className={
-                            "inline-flex rounded-full px-2.5 py-1 text-xs font-semibold " +
-                            (isIn
-                              ? "bg-primary/20 text-primary-foreground"
-                              : "bg-destructive/15 text-destructive")
+                            "whitespace-nowrap px-3 py-4 text-right font-bold tabular-nums " +
+                            (isIn ? "text-primary" : "text-destructive")
                           }
                         >
-                          {r.type}
-                        </span>
-                      </td>
-                      <td
-                        className={
-                          "whitespace-nowrap px-3 py-4 text-right font-bold tabular-nums " +
-                          (isIn ? "text-primary" : "text-destructive")
-                        }
-                      >
-                        {isIn ? "+ " : "- "}
-                        {r.value}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                          {isIn ? "+ " : "- "}
+                          {r.value}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
           </div>
         </section>
       </main>
