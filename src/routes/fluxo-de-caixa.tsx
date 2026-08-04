@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Upload } from "lucide-react";
+import { Upload, FolderOpen } from "lucide-react";
 import { toast } from "sonner";
 import { Sidebar } from "@/components/mate4/sidebar";
 import { Button } from "@/components/ui/button";
