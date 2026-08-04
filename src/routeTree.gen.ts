@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PainelContadorRouteImport } from './routes/painel-contador'
 import { Route as NotasFiscaisRouteImport } from './routes/notas-fiscais'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as InteligenciaIbsCbsRouteImport } from './routes/inteligencia-ibs-cbs'
 import { Route as FluxoDeCaixaRouteImport } from './routes/fluxo-de-caixa'
 import { Route as ComplianceRouteImport } from './routes/compliance'
@@ -25,6 +26,11 @@ const PainelContadorRoute = PainelContadorRouteImport.update({
 const NotasFiscaisRoute = NotasFiscaisRouteImport.update({
   id: '/notas-fiscais',
   path: '/notas-fiscais',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InteligenciaIbsCbsRoute = InteligenciaIbsCbsRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
+  '/login': typeof LoginRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
   '/painel-contador': typeof PainelContadorRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
+  '/login': typeof LoginRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
   '/painel-contador': typeof PainelContadorRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
+  '/login': typeof LoginRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
   '/painel-contador': typeof PainelContadorRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/compliance'
     | '/fluxo-de-caixa'
     | '/inteligencia-ibs-cbs'
+    | '/login'
     | '/notas-fiscais'
     | '/painel-contador'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/compliance'
     | '/fluxo-de-caixa'
     | '/inteligencia-ibs-cbs'
+    | '/login'
     | '/notas-fiscais'
     | '/painel-contador'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/compliance'
     | '/fluxo-de-caixa'
     | '/inteligencia-ibs-cbs'
+    | '/login'
     | '/notas-fiscais'
     | '/painel-contador'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   ComplianceRoute: typeof ComplianceRoute
   FluxoDeCaixaRoute: typeof FluxoDeCaixaRoute
   InteligenciaIbsCbsRoute: typeof InteligenciaIbsCbsRoute
+  LoginRoute: typeof LoginRoute
   NotasFiscaisRoute: typeof NotasFiscaisRoute
   PainelContadorRoute: typeof PainelContadorRoute
 }
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/notas-fiscais'
       fullPath: '/notas-fiscais'
       preLoaderRoute: typeof NotasFiscaisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inteligencia-ibs-cbs': {
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComplianceRoute: ComplianceRoute,
   FluxoDeCaixaRoute: FluxoDeCaixaRoute,
   InteligenciaIbsCbsRoute: InteligenciaIbsCbsRoute,
+  LoginRoute: LoginRoute,
   NotasFiscaisRoute: NotasFiscaisRoute,
   PainelContadorRoute: PainelContadorRoute,
 }
