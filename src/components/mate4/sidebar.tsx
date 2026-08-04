@@ -76,7 +76,7 @@ export function Sidebar() {
       </div>
 
       <nav className="mt-10 flex flex-col gap-1.5">
-        {items.map((item) => (
+        {navItems.map((item) => (
           <Link
             key={item.title}
             to={item.url}
