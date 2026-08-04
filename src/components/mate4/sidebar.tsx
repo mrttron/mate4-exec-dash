@@ -7,8 +7,10 @@ import {
   ShieldCheck,
   Brain,
   Building2,
+  Briefcase,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
+import { useUserRole } from "./user-role";
 import {
   Select,
   SelectContent,
