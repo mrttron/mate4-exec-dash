@@ -7,8 +7,10 @@ import {
   ShieldCheck,
   Brain,
   Building2,
+  Briefcase,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
+import { useUserRole } from "./user-role";
 import {
   Select,
   SelectContent,
@@ -26,6 +28,10 @@ const items = [
   { title: "Inteligência IBS/CBS", url: "/inteligencia-ibs-cbs", icon: Brain },
 ];
 
+const adminItems = [
+  { title: "Painel do Contador", url: "/painel-contador", icon: Briefcase },
+];
+
 const empresas = [
   { id: "tech-solutions", nome: "Tech Solutions LTDA" },
   { id: "mate-holding", nome: "MATE4 Holding" },
@@ -33,6 +39,10 @@ const empresas = [
 ];
 
 export function Sidebar() {
+  const { userRole } = useUserRole();
+  const navItems =
+    userRole === "admin" ? [...items, ...adminItems] : items;
+
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-5 py-8 md:flex">
       <div className="px-2">
@@ -66,7 +76,7 @@ export function Sidebar() {
       </div>
 
       <nav className="mt-10 flex flex-col gap-1.5">
-        {items.map((item) => (
+        {navItems.map((item) => (
           <Link
             key={item.title}
             to={item.url}
