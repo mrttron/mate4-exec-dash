@@ -18,6 +18,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const items = [
   { title: "Central de Ações", url: "/central-de-acoes", icon: ClipboardCheck },
@@ -53,9 +59,10 @@ export function Sidebar() {
           </span>
         </div>
 
+        <div className="mt-4 flex items-center gap-2">
         <Select defaultValue={empresas[0].id}>
           <SelectTrigger
-            className="mt-4 h-9 w-full border-border bg-card text-sm font-medium text-foreground transition-colors hover:border-primary/70 focus:ring-0 focus:ring-offset-0 [&>span]:flex [&>span]:items-center [&>span]:gap-2"
+            className="h-9 w-full min-w-0 flex-1 border-border bg-card text-sm font-medium text-foreground transition-colors hover:border-primary/70 focus:ring-0 focus:ring-offset-0 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:truncate"
             aria-label="Selecionar empresa"
           >
             <Building2 className="h-4 w-4 text-muted-foreground" />
@@ -73,7 +80,33 @@ export function Sidebar() {
             ))}
           </SelectContent>
         </Select>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button
+              type="button"
+              aria-label="Menu do usuário"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+            >
+              JD
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align="end"
+            className="min-w-40 rounded-xl border-border bg-card text-foreground"
+          >
+            <DropdownMenuItem className="cursor-pointer text-foreground focus:bg-primary/20 focus:text-foreground">
+              Meu Perfil
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer text-foreground focus:bg-primary/20 focus:text-foreground">
+              Sair da Conta
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        </div>
       </div>
+
+
 
       <nav className="mt-10 flex flex-col gap-1.5">
         {navItems.map((item) => (
