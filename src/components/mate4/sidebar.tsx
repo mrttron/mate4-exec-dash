@@ -98,6 +98,9 @@ export function Sidebar() {
           </DropdownMenuContent>
         </DropdownMenu>
         </div>
+      </div>
+
+
 
       <nav className="mt-10 flex flex-col gap-1.5">
         {navItems.map((item) => (
