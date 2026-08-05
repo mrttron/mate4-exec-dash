@@ -97,7 +97,7 @@ const acoes: AcaoPrioritaria[] = [
     botao: "Pré-preencher Nota",
     botaoClass: "bg-primary text-primary-foreground hover:bg-primary/90",
     iconeClass: "text-warning",
-    containerClass: "border-warning",
+    containerClass: "bg-card border-warning",
   },
   {
     id: "imposto",
@@ -107,7 +107,7 @@ const acoes: AcaoPrioritaria[] = [
     botao: "Baixar DAS",
     botaoClass: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
     iconeClass: "text-destructive",
-    containerClass: "border-destructive",
+    containerClass: "bg-card border-destructive",
   },
   {
     id: "documento",
@@ -117,7 +117,7 @@ const acoes: AcaoPrioritaria[] = [
     botao: "Enviar Agora",
     botaoClass: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
     iconeClass: "text-destructive",
-    containerClass: "border-destructive/20 bg-destructive/10",
+    containerClass: "bg-destructive/10 border-destructive/20",
   },
   {
     id: "fluxo",
@@ -127,7 +127,7 @@ const acoes: AcaoPrioritaria[] = [
     botao: "Categorizar",
     botaoClass: "",
     iconeClass: "text-muted-foreground",
-    containerClass: "border-muted-foreground",
+    containerClass: "bg-card border-muted-foreground",
   },
 ];
 
