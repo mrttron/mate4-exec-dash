@@ -134,7 +134,7 @@ function CentralDoContador() {
               className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-5 sm:flex-row sm:items-center sm:justify-between"
             >
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-                <span className="w-fit rounded-full border border-accent/50 bg-accent/10 px-3 py-1 text-xs font-bold text-accent">
+                <span className="w-fit rounded-full border border-bronze/50 bg-bronze/10 px-3 py-1 text-xs font-bold text-bronze">
                   {alerta.empresa}
                 </span>
                 <p className="text-sm text-foreground">{alerta.descricao}</p>
