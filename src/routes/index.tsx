@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { TrendingUp, TrendingDown, Wallet, Receipt, Coins } from "lucide-react";
+import { TrendingUp, TrendingDown, Wallet, Receipt, Coins, Clock, Target, User } from "lucide-react";
 import { Sidebar } from "@/components/mate4/sidebar";
 
 export const Route = createFileRoute("/")({
