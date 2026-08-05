@@ -17,6 +17,7 @@ import { Route as InteligenciaIbsCbsRouteImport } from './routes/inteligencia-ib
 import { Route as GestaoGuiasRouteImport } from './routes/gestao-guias'
 import { Route as FluxoDeCaixaRouteImport } from './routes/fluxo-de-caixa'
 import { Route as ComplianceRouteImport } from './routes/compliance'
+import { Route as CentralDoContadorRouteImport } from './routes/central-do-contador'
 import { Route as CentralDeAcoesRouteImport } from './routes/central-de-acoes'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -60,6 +61,11 @@ const ComplianceRoute = ComplianceRouteImport.update({
   path: '/compliance',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CentralDoContadorRoute = CentralDoContadorRouteImport.update({
+  id: '/central-do-contador',
+  path: '/central-do-contador',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CentralDeAcoesRoute = CentralDeAcoesRouteImport.update({
   id: '/central-de-acoes',
   path: '/central-de-acoes',
@@ -74,6 +80,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/central-de-acoes': typeof CentralDeAcoesRoute
+  '/central-do-contador': typeof CentralDoContadorRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/gestao-guias': typeof GestaoGuiasRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/central-de-acoes': typeof CentralDeAcoesRoute
+  '/central-do-contador': typeof CentralDoContadorRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/gestao-guias': typeof GestaoGuiasRoute
@@ -99,6 +107,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/central-de-acoes': typeof CentralDeAcoesRoute
+  '/central-do-contador': typeof CentralDoContadorRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/gestao-guias': typeof GestaoGuiasRoute
@@ -113,6 +122,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/central-de-acoes'
+    | '/central-do-contador'
     | '/compliance'
     | '/fluxo-de-caixa'
     | '/gestao-guias'
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/central-de-acoes'
+    | '/central-do-contador'
     | '/compliance'
     | '/fluxo-de-caixa'
     | '/gestao-guias'
@@ -137,6 +148,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/central-de-acoes'
+    | '/central-do-contador'
     | '/compliance'
     | '/fluxo-de-caixa'
     | '/gestao-guias'
@@ -150,6 +162,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CentralDeAcoesRoute: typeof CentralDeAcoesRoute
+  CentralDoContadorRoute: typeof CentralDoContadorRoute
   ComplianceRoute: typeof ComplianceRoute
   FluxoDeCaixaRoute: typeof FluxoDeCaixaRoute
   GestaoGuiasRoute: typeof GestaoGuiasRoute
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComplianceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/central-do-contador': {
+      id: '/central-do-contador'
+      path: '/central-do-contador'
+      fullPath: '/central-do-contador'
+      preLoaderRoute: typeof CentralDoContadorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/central-de-acoes': {
       id: '/central-de-acoes'
       path: '/central-de-acoes'
@@ -238,6 +258,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CentralDeAcoesRoute: CentralDeAcoesRoute,
+  CentralDoContadorRoute: CentralDoContadorRoute,
   ComplianceRoute: ComplianceRoute,
   FluxoDeCaixaRoute: FluxoDeCaixaRoute,
   GestaoGuiasRoute: GestaoGuiasRoute,
