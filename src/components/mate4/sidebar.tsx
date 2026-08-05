@@ -67,26 +67,26 @@ export function Sidebar() {
 
         <div className="mt-4 flex items-center gap-2">
         {isAdmin && (
-        <Select defaultValue={empresas[0].id}>
-          <SelectTrigger
-            className="h-9 w-full min-w-0 flex-1 border-border bg-card text-sm font-medium text-foreground transition-colors hover:border-primary/70 focus:ring-0 focus:ring-offset-0 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:truncate"
-            aria-label="Selecionar empresa"
-          >
-            <Building2 className="h-4 w-4 text-muted-foreground" />
-            <SelectValue placeholder="Selecionar empresa" />
-          </SelectTrigger>
-          <SelectContent className="border-border bg-card text-foreground">
-            {empresas.map((empresa) => (
-              <SelectItem
-                key={empresa.id}
-                value={empresa.id}
-                className="cursor-pointer focus:bg-primary/20 focus:text-foreground"
-              >
-                {empresa.nome}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+          <Select>
+            <SelectTrigger
+              className="h-9 w-full min-w-0 flex-1 border-border bg-card text-sm font-medium text-foreground transition-colors hover:border-primary/70 focus:ring-0 focus:ring-offset-0 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:truncate data-[placeholder]:text-muted-foreground"
+              aria-label="Selecionar empresa"
+            >
+              <Building2 className="h-4 w-4 text-muted-foreground" />
+              <SelectValue placeholder="Selecione uma empresa..." />
+            </SelectTrigger>
+            <SelectContent className="border-border bg-card text-foreground">
+              {empresas.map((empresa) => (
+                <SelectItem
+                  key={empresa.id}
+                  value={empresa.id}
+                  className="cursor-pointer focus:bg-primary/20 focus:text-foreground"
+                >
+                  {empresa.nome}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         )}
 
 
