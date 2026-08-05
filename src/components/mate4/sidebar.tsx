@@ -11,6 +11,7 @@ import {
   Wallet,
   Receipt,
   Inbox,
+  BarChart3,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
 import { useUserRole } from "./user-role";
