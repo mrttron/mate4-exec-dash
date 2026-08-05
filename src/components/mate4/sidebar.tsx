@@ -66,6 +66,7 @@ export function Sidebar() {
         </div>
 
         <div className="mt-4 flex items-center gap-2">
+        {isAdmin && (
         <Select defaultValue={empresas[0].id}>
           <SelectTrigger
             className="h-9 w-full min-w-0 flex-1 border-border bg-card text-sm font-medium text-foreground transition-colors hover:border-primary/70 focus:ring-0 focus:ring-offset-0 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:truncate"
@@ -86,6 +87,9 @@ export function Sidebar() {
             ))}
           </SelectContent>
         </Select>
+        )}
+
+
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
