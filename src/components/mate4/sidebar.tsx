@@ -72,7 +72,7 @@ export function Sidebar() {
             className="h-9 w-full min-w-0 flex-1 items-center justify-between border-border bg-[#25282D] px-3 py-0 text-sm font-medium text-foreground transition-colors hover:border-primary/70 focus:ring-0 focus:ring-offset-0 data-[placeholder]:text-[#9CA3AF] [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:truncate"
             aria-label="Selecionar empresa"
           >
-              <Building2 className="h-4 w-4 text-muted-foreground" />
+              <Building2 className="mr-2 h-4 w-4 text-muted-foreground" />
               <SelectValue placeholder="Selecionar empresa..." />
             </SelectTrigger>
             <SelectContent className="border-border bg-card text-foreground">
