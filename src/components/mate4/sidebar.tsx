@@ -5,7 +5,6 @@ import {
   ArrowLeftRight,
   FileText,
   ShieldCheck,
-  Brain,
   Building2,
   Briefcase,
   Wallet,
