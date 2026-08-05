@@ -8,6 +8,9 @@ import {
   Brain,
   Building2,
   Briefcase,
+  Wallet,
+  Receipt,
+  Inbox,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
 import { useUserRole } from "./user-role";
@@ -25,17 +28,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const items = [
+const clienteItems = [
   { title: "Central de Ações", url: "/central-de-acoes", icon: ClipboardCheck },
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
+  { title: "Dashboard Executivo", url: "/", icon: LayoutDashboard },
   { title: "Fluxo de Caixa", url: "/fluxo-de-caixa", icon: ArrowLeftRight },
   { title: "Notas Fiscais", url: "/notas-fiscais", icon: FileText },
   { title: "Compliance", url: "/compliance", icon: ShieldCheck },
-  { title: "Inteligência IBS/CBS", url: "/inteligencia-ibs-cbs", icon: Brain },
 ];
 
 const adminItems = [
-  { title: "Painel do Contador", url: "/painel-contador", icon: Briefcase },
+  { title: "Painel de Carteira", url: "/painel-contador", icon: Wallet },
+  { title: "Central do Contador", url: "/central-de-acoes", icon: Briefcase },
+  { title: "Gestão de Guias e Boletos", url: "/gestao-guias", icon: Receipt },
+  { title: "Solicitações de Docs", url: "/solicitacoes-docs", icon: Inbox },
+  { title: "Inteligência IBS/CBS", url: "/inteligencia-ibs-cbs", icon: Brain },
 ];
 
 const empresas = [
@@ -46,8 +52,8 @@ const empresas = [
 
 export function Sidebar() {
   const { userRole } = useUserRole();
-  const navItems =
-    userRole === "admin" ? [...items, ...adminItems] : items;
+  const isAdmin = userRole === "admin";
+  const navItems = isAdmin ? adminItems : clienteItems;
 
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-5 py-8 md:flex">
@@ -60,6 +66,7 @@ export function Sidebar() {
         </div>
 
         <div className="mt-4 flex items-center gap-2">
+        {isAdmin && (
         <Select defaultValue={empresas[0].id}>
           <SelectTrigger
             className="h-9 w-full min-w-0 flex-1 border-border bg-card text-sm font-medium text-foreground transition-colors hover:border-primary/70 focus:ring-0 focus:ring-offset-0 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:truncate"
@@ -80,6 +87,9 @@ export function Sidebar() {
             ))}
           </SelectContent>
         </Select>
+        )}
+
+
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
