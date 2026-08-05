@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { TrendingUp, TrendingDown, Wallet, Receipt, Coins } from "lucide-react";
+import { TrendingUp, TrendingDown, Wallet, Receipt, Coins, Clock, Target, User } from "lucide-react";
 import { Sidebar } from "@/components/mate4/sidebar";
 
 export const Route = createFileRoute("/")({
@@ -218,6 +218,60 @@ function Dashboard() {
                 />
               </AreaChart>
             </ResponsiveContainer>
+          </div>
+        </section>
+
+        {/* Análise Operacional */}
+        <section className="mt-8">
+          <h2 className="mb-5 text-lg font-bold">Análise Operacional</h2>
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            {/* Prazo Médio de Recebimento */}
+            <article className="rounded-xl border border-border bg-card p-6">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium text-muted-foreground">PMR</p>
+                <Clock className="h-4 w-4 text-muted-foreground" />
+              </div>
+              <div className="mt-5 flex items-center gap-3">
+                <p className="metric-value">32 Dias</p>
+                <span className="rounded-full bg-warning/15 px-2.5 py-1 text-xs font-bold text-warning">
+                  Atenção
+                </span>
+              </div>
+              <p className="mt-4 text-sm font-semibold text-foreground">
+                Prazo Médio de Recebimento
+              </p>
+            </article>
+
+            {/* Ponto de Equilíbrio */}
+            <article className="rounded-xl border border-border bg-card p-6">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium text-muted-foreground">
+                  Meta Mínima Mensal
+                </p>
+                <Target className="h-4 w-4 text-bronze" />
+              </div>
+              <p className="metric-value mt-5 text-bronze">R$ 28.500</p>
+              <p className="mt-4 text-sm font-semibold text-foreground">
+                Ponto de Equilíbrio
+              </p>
+            </article>
+
+            {/* Concentração de Cliente */}
+            <article className="rounded-xl border border-border bg-card p-6">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium text-muted-foreground">
+                  Maior Cliente
+                </p>
+                <User className="h-4 w-4 text-muted-foreground" />
+              </div>
+              <p className="metric-value mt-5">65%</p>
+              <p className="mt-4 text-sm font-semibold text-foreground">
+                Concentração de Cliente
+              </p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Top 1 cliente representa 65% da receita
+              </p>
+            </article>
           </div>
         </section>
       </main>
