@@ -8,6 +8,9 @@ import {
   Brain,
   Building2,
   Briefcase,
+  Wallet,
+  Receipt,
+  Inbox,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
 import { useUserRole } from "./user-role";
