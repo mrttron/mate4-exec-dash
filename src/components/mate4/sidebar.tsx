@@ -43,7 +43,6 @@ const adminItems = [
   { title: "Central do Contador", url: "/central-do-contador", icon: Briefcase },
   { title: "Gestão de Guias e Boletos", url: "/gestao-guias", icon: Receipt },
   { title: "Solicitações de Docs", url: "/solicitacoes-docs", icon: Inbox },
-  { title: "Inteligência IBS/CBS", url: "/inteligencia-ibs-cbs", icon: Brain },
 ];
 
 const empresas = [
