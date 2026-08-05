@@ -16,6 +16,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as InteligenciaIbsCbsRouteImport } from './routes/inteligencia-ibs-cbs'
 import { Route as GestaoGuiasRouteImport } from './routes/gestao-guias'
 import { Route as FluxoDeCaixaRouteImport } from './routes/fluxo-de-caixa'
+import { Route as DashboardMate4RouteImport } from './routes/dashboard-mate4'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as CentralDoContadorRouteImport } from './routes/central-do-contador'
 import { Route as CentralDeAcoesRouteImport } from './routes/central-de-acoes'
@@ -56,6 +57,11 @@ const FluxoDeCaixaRoute = FluxoDeCaixaRouteImport.update({
   path: '/fluxo-de-caixa',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardMate4Route = DashboardMate4RouteImport.update({
+  id: '/dashboard-mate4',
+  path: '/dashboard-mate4',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComplianceRoute = ComplianceRouteImport.update({
   id: '/compliance',
   path: '/compliance',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/central-de-acoes': typeof CentralDeAcoesRoute
   '/central-do-contador': typeof CentralDoContadorRoute
   '/compliance': typeof ComplianceRoute
+  '/dashboard-mate4': typeof DashboardMate4Route
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/gestao-guias': typeof GestaoGuiasRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByTo {
   '/central-de-acoes': typeof CentralDeAcoesRoute
   '/central-do-contador': typeof CentralDoContadorRoute
   '/compliance': typeof ComplianceRoute
+  '/dashboard-mate4': typeof DashboardMate4Route
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/gestao-guias': typeof GestaoGuiasRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/central-de-acoes': typeof CentralDeAcoesRoute
   '/central-do-contador': typeof CentralDoContadorRoute
   '/compliance': typeof ComplianceRoute
+  '/dashboard-mate4': typeof DashboardMate4Route
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
   '/gestao-guias': typeof GestaoGuiasRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/central-de-acoes'
     | '/central-do-contador'
     | '/compliance'
+    | '/dashboard-mate4'
     | '/fluxo-de-caixa'
     | '/gestao-guias'
     | '/inteligencia-ibs-cbs'
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/central-de-acoes'
     | '/central-do-contador'
     | '/compliance'
+    | '/dashboard-mate4'
     | '/fluxo-de-caixa'
     | '/gestao-guias'
     | '/inteligencia-ibs-cbs'
@@ -150,6 +161,7 @@ export interface FileRouteTypes {
     | '/central-de-acoes'
     | '/central-do-contador'
     | '/compliance'
+    | '/dashboard-mate4'
     | '/fluxo-de-caixa'
     | '/gestao-guias'
     | '/inteligencia-ibs-cbs'
@@ -164,6 +176,7 @@ export interface RootRouteChildren {
   CentralDeAcoesRoute: typeof CentralDeAcoesRoute
   CentralDoContadorRoute: typeof CentralDoContadorRoute
   ComplianceRoute: typeof ComplianceRoute
+  DashboardMate4Route: typeof DashboardMate4Route
   FluxoDeCaixaRoute: typeof FluxoDeCaixaRoute
   GestaoGuiasRoute: typeof GestaoGuiasRoute
   InteligenciaIbsCbsRoute: typeof InteligenciaIbsCbsRoute
@@ -224,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FluxoDeCaixaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard-mate4': {
+      id: '/dashboard-mate4'
+      path: '/dashboard-mate4'
+      fullPath: '/dashboard-mate4'
+      preLoaderRoute: typeof DashboardMate4RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/compliance': {
       id: '/compliance'
       path: '/compliance'
@@ -260,6 +280,7 @@ const rootRouteChildren: RootRouteChildren = {
   CentralDeAcoesRoute: CentralDeAcoesRoute,
   CentralDoContadorRoute: CentralDoContadorRoute,
   ComplianceRoute: ComplianceRoute,
+  DashboardMate4Route: DashboardMate4Route,
   FluxoDeCaixaRoute: FluxoDeCaixaRoute,
   GestaoGuiasRoute: GestaoGuiasRoute,
   InteligenciaIbsCbsRoute: InteligenciaIbsCbsRoute,
@@ -271,3 +292,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

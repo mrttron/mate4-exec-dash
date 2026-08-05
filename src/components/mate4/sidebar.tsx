@@ -38,6 +38,7 @@ const clienteItems = [
 ];
 
 const adminItems = [
+  { title: "Dashboard MATE4", url: "/dashboard-mate4", icon: BarChart3 },
   { title: "Painel de Carteira", url: "/painel-contador", icon: Wallet },
   { title: "Central do Contador", url: "/central-do-contador", icon: Briefcase },
   { title: "Gestão de Guias e Boletos", url: "/gestao-guias", icon: Receipt },
