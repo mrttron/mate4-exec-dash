@@ -200,7 +200,7 @@ function CentralDeAcoes() {
                 return (
                   <article
                     key={acao.id}
-                    className={`flex items-center gap-4 rounded-xl border p-5 bg-card ${acao.containerClass}`}
+                    className={`flex items-center gap-4 rounded-xl border p-5 ${acao.containerClass}`}
                   >
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                       <Icon className={`h-6 w-6 ${acao.iconeClass}`} />
