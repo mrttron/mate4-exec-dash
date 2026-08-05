@@ -91,28 +91,30 @@ export function Sidebar() {
 
 
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button
-              type="button"
-              aria-label="Menu do usuário"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+        {!isAdmin && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                aria-label="Menu do usuário"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+              >
+                JD
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="min-w-40 rounded-xl border-border bg-card text-foreground"
             >
-              JD
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align="end"
-            className="min-w-40 rounded-xl border-border bg-card text-foreground"
-          >
-            <DropdownMenuItem className="cursor-pointer text-foreground focus:bg-primary/20 focus:text-foreground">
-              Meu Perfil
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer text-foreground focus:bg-primary/20 focus:text-foreground">
-              Sair da Conta
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+              <DropdownMenuItem className="cursor-pointer text-foreground focus:bg-primary/20 focus:text-foreground">
+                Meu Perfil
+              </DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer text-foreground focus:bg-primary/20 focus:text-foreground">
+                Sair da Conta
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
         </div>
       </div>
 
