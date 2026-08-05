@@ -73,7 +73,7 @@ export function Sidebar() {
             aria-label="Selecionar empresa"
           >
               <Building2 className="h-4 w-4 text-muted-foreground" />
-              <SelectValue placeholder="Selecione uma empresa..." />
+              <SelectValue placeholder="Selecionar empresa..." />
             </SelectTrigger>
             <SelectContent className="border-border bg-card text-foreground">
               {empresas.map((empresa) => (
