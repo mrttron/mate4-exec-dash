@@ -9,15 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SolicitacoesDocsRouteImport } from './routes/solicitacoes-docs'
 import { Route as PainelContadorRouteImport } from './routes/painel-contador'
 import { Route as NotasFiscaisRouteImport } from './routes/notas-fiscais'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as InteligenciaIbsCbsRouteImport } from './routes/inteligencia-ibs-cbs'
+import { Route as GestaoGuiasRouteImport } from './routes/gestao-guias'
 import { Route as FluxoDeCaixaRouteImport } from './routes/fluxo-de-caixa'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as CentralDeAcoesRouteImport } from './routes/central-de-acoes'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SolicitacoesDocsRoute = SolicitacoesDocsRouteImport.update({
+  id: '/solicitacoes-docs',
+  path: '/solicitacoes-docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PainelContadorRoute = PainelContadorRouteImport.update({
   id: '/painel-contador',
   path: '/painel-contador',
@@ -36,6 +43,11 @@ const LoginRoute = LoginRouteImport.update({
 const InteligenciaIbsCbsRoute = InteligenciaIbsCbsRouteImport.update({
   id: '/inteligencia-ibs-cbs',
   path: '/inteligencia-ibs-cbs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GestaoGuiasRoute = GestaoGuiasRouteImport.update({
+  id: '/gestao-guias',
+  path: '/gestao-guias',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FluxoDeCaixaRoute = FluxoDeCaixaRouteImport.update({
@@ -64,20 +76,24 @@ export interface FileRoutesByFullPath {
   '/central-de-acoes': typeof CentralDeAcoesRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
+  '/gestao-guias': typeof GestaoGuiasRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
   '/login': typeof LoginRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
   '/painel-contador': typeof PainelContadorRoute
+  '/solicitacoes-docs': typeof SolicitacoesDocsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/central-de-acoes': typeof CentralDeAcoesRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
+  '/gestao-guias': typeof GestaoGuiasRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
   '/login': typeof LoginRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
   '/painel-contador': typeof PainelContadorRoute
+  '/solicitacoes-docs': typeof SolicitacoesDocsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -85,10 +101,12 @@ export interface FileRoutesById {
   '/central-de-acoes': typeof CentralDeAcoesRoute
   '/compliance': typeof ComplianceRoute
   '/fluxo-de-caixa': typeof FluxoDeCaixaRoute
+  '/gestao-guias': typeof GestaoGuiasRoute
   '/inteligencia-ibs-cbs': typeof InteligenciaIbsCbsRoute
   '/login': typeof LoginRoute
   '/notas-fiscais': typeof NotasFiscaisRoute
   '/painel-contador': typeof PainelContadorRoute
+  '/solicitacoes-docs': typeof SolicitacoesDocsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -97,30 +115,36 @@ export interface FileRouteTypes {
     | '/central-de-acoes'
     | '/compliance'
     | '/fluxo-de-caixa'
+    | '/gestao-guias'
     | '/inteligencia-ibs-cbs'
     | '/login'
     | '/notas-fiscais'
     | '/painel-contador'
+    | '/solicitacoes-docs'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/central-de-acoes'
     | '/compliance'
     | '/fluxo-de-caixa'
+    | '/gestao-guias'
     | '/inteligencia-ibs-cbs'
     | '/login'
     | '/notas-fiscais'
     | '/painel-contador'
+    | '/solicitacoes-docs'
   id:
     | '__root__'
     | '/'
     | '/central-de-acoes'
     | '/compliance'
     | '/fluxo-de-caixa'
+    | '/gestao-guias'
     | '/inteligencia-ibs-cbs'
     | '/login'
     | '/notas-fiscais'
     | '/painel-contador'
+    | '/solicitacoes-docs'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -128,14 +152,23 @@ export interface RootRouteChildren {
   CentralDeAcoesRoute: typeof CentralDeAcoesRoute
   ComplianceRoute: typeof ComplianceRoute
   FluxoDeCaixaRoute: typeof FluxoDeCaixaRoute
+  GestaoGuiasRoute: typeof GestaoGuiasRoute
   InteligenciaIbsCbsRoute: typeof InteligenciaIbsCbsRoute
   LoginRoute: typeof LoginRoute
   NotasFiscaisRoute: typeof NotasFiscaisRoute
   PainelContadorRoute: typeof PainelContadorRoute
+  SolicitacoesDocsRoute: typeof SolicitacoesDocsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/solicitacoes-docs': {
+      id: '/solicitacoes-docs'
+      path: '/solicitacoes-docs'
+      fullPath: '/solicitacoes-docs'
+      preLoaderRoute: typeof SolicitacoesDocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/painel-contador': {
       id: '/painel-contador'
       path: '/painel-contador'
@@ -162,6 +195,13 @@ declare module '@tanstack/react-router' {
       path: '/inteligencia-ibs-cbs'
       fullPath: '/inteligencia-ibs-cbs'
       preLoaderRoute: typeof InteligenciaIbsCbsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gestao-guias': {
+      id: '/gestao-guias'
+      path: '/gestao-guias'
+      fullPath: '/gestao-guias'
+      preLoaderRoute: typeof GestaoGuiasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fluxo-de-caixa': {
@@ -200,10 +240,12 @@ const rootRouteChildren: RootRouteChildren = {
   CentralDeAcoesRoute: CentralDeAcoesRoute,
   ComplianceRoute: ComplianceRoute,
   FluxoDeCaixaRoute: FluxoDeCaixaRoute,
+  GestaoGuiasRoute: GestaoGuiasRoute,
   InteligenciaIbsCbsRoute: InteligenciaIbsCbsRoute,
   LoginRoute: LoginRoute,
   NotasFiscaisRoute: NotasFiscaisRoute,
   PainelContadorRoute: PainelContadorRoute,
+  SolicitacoesDocsRoute: SolicitacoesDocsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
