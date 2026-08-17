@@ -58,7 +58,11 @@ export function Sidebar() {
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-5 py-8 md:flex">
       <div className="px-2">
-        <BordaMolettaLogo iconSize={28} textClassName="text-xl" />
+        <BordaMolettaLogo
+          iconSize={28}
+          textClassName="text-[10px] tracking-[0.04em]"
+          className="gap-1.5"
+        />
 
         <div className="mt-4 flex items-center gap-2">
         {isAdmin && (
