@@ -1,5 +1,3 @@
-
-
 interface BordaMolettaLogoProps {
   iconSize?: number;
   textClassName?: string;
