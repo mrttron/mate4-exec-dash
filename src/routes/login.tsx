@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { QueenIcon } from "@/components/mate4/queen-icon";
+import { BordaMolettaLogo } from "@/components/mate4/borda-moletta-logo";
 import { useUserRole } from "@/components/mate4/user-role";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -55,12 +55,11 @@ function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 py-12">
-      <div className="flex items-center gap-3">
-        <QueenIcon className="h-12 w-12 text-primary" />
-        <span className="text-5xl font-extrabold tracking-tight text-primary">
-          MATE4
-        </span>
-      </div>
+      <BordaMolettaLogo
+        iconSize={48}
+        textClassName="text-4xl tracking-[0.08em]"
+        className="justify-center"
+      />
 
       <form
         onSubmit={handleSubmit}

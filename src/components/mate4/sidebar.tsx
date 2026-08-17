@@ -12,7 +12,7 @@ import {
   Inbox,
   BarChart3,
 } from "lucide-react";
-import { QueenIcon } from "./queen-icon";
+import { BordaMolettaLogo } from "./borda-moletta-logo";
 import { useUserRole } from "./user-role";
 import {
   Select,
@@ -58,12 +58,11 @@ export function Sidebar() {
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar px-5 py-8 md:flex">
       <div className="px-2">
-        <div className="flex items-center gap-2.5">
-          <QueenIcon className="h-7 w-7 text-primary" />
-          <span className="text-xl font-extrabold tracking-tight text-primary">
-            MATE4
-          </span>
-        </div>
+        <BordaMolettaLogo
+          iconSize={28}
+          textClassName="text-sm tracking-[0.04em]"
+          className="gap-1.5"
+        />
 
         <div className="mt-4 flex items-center gap-2">
         {isAdmin && (
