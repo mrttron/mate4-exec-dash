@@ -1,4 +1,4 @@
-import kingLogo from "@/assets/borda-moletta-king.png";
+
 
 interface BordaMolettaLogoProps {
   iconSize?: number;
