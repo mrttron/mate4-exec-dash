@@ -22,8 +22,8 @@ export function BordaMolettaLogo({
         loading="eager"
       />
       <span
-        className={`font-[Manrope] font-extrabold uppercase text-[#F2F0EB] ${textClassName}`}
-        style={{ letterSpacing: "0.12em" }}
+        className={`font-[Manrope] whitespace-nowrap font-extrabold uppercase text-[#F2F0EB] ${textClassName}`}
+        style={{ letterSpacing: "0.08em" }}
       >
         BORDA MOLLETTA OS
       </span>
