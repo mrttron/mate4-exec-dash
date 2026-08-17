@@ -8,7 +8,7 @@ interface BordaMolettaLogoProps {
 
 export function BordaMolettaLogo({
   iconSize = 28,
-  textClassName = "text-xl",
+  textClassName = "text-xl tracking-[0.08em]",
   className,
 }: BordaMolettaLogoProps) {
   return (
@@ -23,7 +23,6 @@ export function BordaMolettaLogo({
       />
       <span
         className={`font-[Manrope] whitespace-nowrap font-extrabold uppercase text-[#F2F0EB] ${textClassName}`}
-        style={{ letterSpacing: "0.08em" }}
       >
         BORDA MOLLETTA OS
       </span>
