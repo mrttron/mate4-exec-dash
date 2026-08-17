@@ -56,7 +56,7 @@ function LoginPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 py-12">
       <BordaMolettaLogo
-        iconSize={48}
+        iconSize={56}
         textClassName="text-4xl tracking-[0.08em]"
         className="justify-center"
       />
