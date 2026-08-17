@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { QueenIcon } from "@/components/mate4/queen-icon";
+import { BordaMolettaLogo } from "@/components/mate4/borda-moletta-logo";
 import { useUserRole } from "@/components/mate4/user-role";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

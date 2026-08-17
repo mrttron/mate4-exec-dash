@@ -13,6 +13,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import { QueenIcon } from "./queen-icon";
+import { BordaMolettaLogo } from "./borda-moletta-logo";
 import { useUserRole } from "./user-role";
 import {
   Select,
