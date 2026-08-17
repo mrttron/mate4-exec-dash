@@ -60,7 +60,7 @@ export function Sidebar() {
       <div className="px-2">
         <BordaMolettaLogo
           iconSize={28}
-          textClassName="text-xs tracking-[0.04em]"
+          textClassName="text-sm tracking-[0.04em]"
           className="gap-1.5"
         />
 
