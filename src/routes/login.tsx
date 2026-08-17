@@ -56,12 +56,11 @@ function LoginPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4 py-12">
-      <div className="flex items-center gap-3">
-        <QueenIcon className="h-12 w-12 text-primary" />
-        <span className="text-5xl font-extrabold tracking-tight text-primary">
-          MATE4
-        </span>
-      </div>
+      <BordaMolettaLogo
+        iconSize={48}
+        textClassName="text-4xl"
+        className="justify-center"
+      />
 
       <form
         onSubmit={handleSubmit}
